@@ -4,5 +4,8 @@ node_modules/
 # env files
 .env
 
+# Else
+package-lock.json
+
 # OS level
 .DS_Store
