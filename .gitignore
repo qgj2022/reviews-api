@@ -1,6 +1,11 @@
 # Dependencies
 node_modules/
 
+# Data files
+data/reviews.csv
+data/reviews_photos.csv
+
+
 # env files
 .env
 
