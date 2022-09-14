@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# env files
+.env
+
+# OS level
+.DS_Store
