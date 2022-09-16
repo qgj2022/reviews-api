@@ -1,6 +1,6 @@
 const db = require('../../db');
 
-const getReviewsMeta = async (productId) => {
+module.exports = async (productId) => {
   const data = {};
   // No need for opening single client connection here. Read only
   const ratings = await db.query(`SELECT * FROM ratingsmeta
@@ -61,5 +61,3 @@ const getReviewsMeta = async (productId) => {
   // console.log('ratings meta', ratings);
   // console.log('chars meta', charValues);
 }
-
-module.exports = getReviewsMeta;
