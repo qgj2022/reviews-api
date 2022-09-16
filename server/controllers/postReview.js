@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     req.body.email,
   ];
 
-  console.log(textParam);
+  console.log(req.body.photos);
   // Photos should already be in array structure
   const photoParam = req.body.photos;
 
@@ -22,11 +22,13 @@ module.exports = async (req, res) => {
 
   try {
     const postedText = await postReview.text(textParam);
-    // const postedPhotos = await postReview.photos(photoParam, postedText.rows[0]);
+    const newReviewId = postedText.rows[0].review_id;
+    console.log('hellooooo');
+    const postedPhotos = await postReview.photos(photoParam, newReviewId);
     // const postedChars = await postReview.char(charParam);
     res.status(200);
     // res.send(postedText.rows);
-    res.send(postedText);
+    res.send(postedPhotos);
   }
   catch(err) {
     res.status(400);

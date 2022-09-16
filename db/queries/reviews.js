@@ -66,7 +66,8 @@ module.exports = {
       body, recommend, reviewer_name,
       reviewer_email)
       VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8)`
+      ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING review_id`
     )
   }
 }

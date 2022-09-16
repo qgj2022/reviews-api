@@ -12,17 +12,18 @@ module.exports = {
 
     const charIds = Object.keys(charObj);
     const charVals = Object.values(charObj);
-    const charQuery = '';
+    let charQuery = '';
 
     for (let i = 0; i < charIds.length; i++) {
       charQuery += `${valToCol[charVals[i]]} = ${valToCol[charVals[i]]} + 1
         WHERE ${chardIds[i]} = char_id`;
 
-      if (i <= charIds.length - 1) {
+      if (i < charIds.length - 1) {
         charquery += ', ';
       }
     }
 
+    console.log(charQuery);
     return (
       `UPDATE charmeta
       (one, two, three, four, five)

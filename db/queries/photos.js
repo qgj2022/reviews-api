@@ -2,11 +2,11 @@
 
 module.exports = {
   insert: (photos, reviewId) => {
-    const photosQuery = '';
+    let photosQuery = '';
     for (let i = 0; i < photos.length; i++) {
-      photosQuery += `(${reviewId}, ${photos[i]})`
+      photosQuery += `(${reviewId}, '${photos[i]}')`
 
-      if (i <= charIds.length - 1) {
+      if (i < photos.length - 1) {
         photosQuery += ', ';
       }
     }
@@ -14,8 +14,7 @@ module.exports = {
     return (
       `INSERT INTO photos
       (review_id, url)
-      VALUES
-      ${photosQuery}`
+      VALUES ` + photosQuery
     )
   }
 }
