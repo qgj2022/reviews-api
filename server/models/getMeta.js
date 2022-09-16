@@ -42,12 +42,13 @@ const getReviewsMeta = async (productId) => {
     '4': ratings.rows[0].four_star,
     '5': ratings.rows[0].five_star,
   };
+  // Original API provides values as strings
   data.recommended = {
-    'false': ratings.rows[0].recommend_yes,
-    'true': ratings.rows[0].recommend_no,
+    'false': ratings.rows[0].recommend_yes.toString(),
+    'true': ratings.rows[0].recommend_no.toString(),
   }
-  data.characteristics = {};
 
+  data.characteristics = {};
   // Add each characteristic object containing id and value
   // as object property of data.characteristics
   for (let i = 0; i < charTitle.rows.length; i++) {
@@ -60,6 +61,6 @@ const getReviewsMeta = async (productId) => {
   // console.log('chars meta', charValues);
 }
 
-getReviewsMeta(10001);
+getReviewsMeta(1002);
 
 module.exports = getReviewsMeta;

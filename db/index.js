@@ -12,32 +12,33 @@ const credentials = {
 
 const pool = new Pool(credentials);
 
-async function connectClient() {
-  const client = await pool.connect();
-  console.log('Connected to sdc db successfully');
-  try {
-    const now = await client.query("SELECT NOW()");
-    const reviewsTable = await client.query(tables.reviews);
-    const photosTable = await client.query(tables.photos);
-    const ratingsTable = await client.query(tables.ratingsMeta);
-    const charTable = await client.query(tables.charMeta);
-    const charName = await client.query(tables.charName);
-    console.log('The time is ' + now.rows[0].now);
-    // console.log('reviews table', reviewsTable);
-    // console.log('photos table', photosTable);
-    // console.log('ratings table', ratingsTable);
-    // console.log('characteristics table', charTable);
-  }
-  catch (err) {
-    console.log(`Something wrong happened: ${err}`);
-  }
-  finally {
-    client.release();
-    console.log('Client disconnected successfully');
-  }
-};
+// Run function below to initialize db table creation if needed
+// async function connectClient() {
+//   const client = await pool.connect();
+//   console.log('Connected to sdc db successfully');
+//   try {
+//     const now = await client.query("SELECT NOW()");
+//     const reviewsTable = await client.query(tables.reviews);
+//     const photosTable = await client.query(tables.photos);
+//     const ratingsTable = await client.query(tables.ratingsMeta);
+//     const charTable = await client.query(tables.charMeta);
+//     const charName = await client.query(tables.charName);
+//     console.log('The time is ' + now.rows[0].now);
+//     // console.log('reviews table', reviewsTable);
+//     // console.log('photos table', photosTable);
+//     // console.log('ratings table', ratingsTable);
+//     // console.log('characteristics table', charTable);
+//   }
+//   catch (err) {
+//     console.log(`Something wrong happened: ${err}`);
+//   }
+//   finally {
+//     client.release();
+//     console.log('Client disconnected successfully');
+//   }
+// };
 
-connectClient();
+// connectClient();
 
 module.exports = {
   query: (text, params) => pool.query(text, params),

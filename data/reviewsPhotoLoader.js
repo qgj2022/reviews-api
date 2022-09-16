@@ -20,18 +20,11 @@ const extractPhotos = () => {
       // convert parsed object into array minus first id column
       const values = Object.values(row).slice(1);
       results.push(values);
-      console.log(row.id);
     })
     .on('end', async () => {
       // insert row into reviews table
       for (let i = 0; i < results.length; i++) {
-        await db.query(queryPhotos.insert, [...results[i]], (err, results) => {
-          if (err) {
-            console.log('There was an error adding review to database: ', err);
-          }
-          // include any other success statement here
-          console.log('Successfully added review to database!');
-        });
+        await db.query(queryPhotos.insert, [...results[i]]);
       }
       console.log('finished');
     })

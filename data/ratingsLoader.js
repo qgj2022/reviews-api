@@ -1,18 +1,6 @@
 const fs = require('fs');
 const db = require('../db');
 
-// tables.ratingsMeta =
-//   `CREATE TABLE IF NOT EXISTS ratingsmeta (
-//     product_id INT NOT NULL,
-//     one_star INT DEFAULT 0,
-//     two_star INT DEFAULT 0,
-//     three_star INT DEFAULT 0,
-//     four_star INT DEFAULT 0,
-//     five_star INT DEFAULT 0,
-//     recommend INT DEFAULT 0,
-//     PRIMARY KEY(product_id)
-//   );`
-
 const valToCol = {
   1: 'one_star',
   2: 'two_star',
