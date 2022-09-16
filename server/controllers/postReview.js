@@ -11,28 +11,27 @@ module.exports = async (req, res) => {
     req.body.recommend,
     req.body.name,
     req.body.email,
-  ]
+  ];
+
+  console.log(textParam);
   // Photos should already be in array structure
   const photoParam = req.body.photos;
 
-  // Characteristics object submission
-  // Request object should have string id and num value properties
-  const charParam = req.body.characteristics,
+  // Characteristics object should have string id and num value properties
+  const charParam = req.body.characteristics;
 
   try {
     const postedText = await postReview.text(textParam);
-    const postedPhotos = await postReview.photos(photoParam);
-    const postedChars = await postReview.char(charParam);
+    // const postedPhotos = await postReview.photos(photoParam, postedText.rows[0]);
+    // const postedChars = await postReview.char(charParam);
     res.status(200);
-    // res.send(posted.rows);
+    // res.send(postedText.rows);
+    res.send(postedText);
   }
   catch(err) {
     res.status(400);
     res.send(err);
   }
-
-
-
 }
 
 

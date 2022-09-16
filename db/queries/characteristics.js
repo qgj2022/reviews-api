@@ -23,11 +23,10 @@ module.exports = {
       }
     }
 
-
     return (
       `UPDATE charmeta
       (one, two, three, four, five)
-      SET` + charQuery;
+      SET` + charQuery
     )
   }
 }
