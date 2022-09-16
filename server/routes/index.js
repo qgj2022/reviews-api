@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const controller =  require('../controllers');
 const router = express.Router();
+const controller =  require('../controllers');
 
 router.get('/reviews', controller.getReviews);
 
