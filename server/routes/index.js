@@ -25,9 +25,23 @@ router.get('/reviews', async (req, res) => {
   }
 });
 
-router.get('/reviews/meta', (req, res) => {
-  // Insert query here
+router.get('/reviews/meta', async (req, res) => {
+  if (!req.query.product_id) {
+    res.sendStatus(404);
+    return;
+  }
 
+  const { product_id } = req.query;
+
+  try {
+    const metaInfo = await models.getReviewsMeta(product_id);
+    res.status(200);
+    res.send(metaInfo);
+  }
+  catch(err) {
+    res.status(400);
+    res.send(err);
+  }
 });
 
 router.post('/reviews', (req, res) => {

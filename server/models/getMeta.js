@@ -55,13 +55,11 @@ const getReviewsMeta = async (productId) => {
     data.characteristics[charTitle.rows[i].name] = avgCharValues[i];
   }
 
-  console.log(data);
+  return data;
+  // console.log(data);
   // console.log('charTitle', charTitle);
   // console.log('ratings meta', ratings);
   // console.log('chars meta', charValues);
 }
-
-// Test case
-// getReviewsMeta(1002);
 
 module.exports = getReviewsMeta;
