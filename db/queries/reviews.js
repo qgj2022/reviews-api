@@ -1,14 +1,14 @@
-// For inserting reviews into db
+// For inserting and querying reviews from db
 
 module.exports = {
   insert:
-  `INSERT INTO reviews
-  (product_id, rating, date, summary,
-  body, recommend, reported, reviewer_name,
-  reviewer_email, response, helpfulness)
-  VALUES
-  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-  `,
+    `INSERT INTO reviews
+    (product_id, rating, date, summary,
+    body, recommend, reported, reviewer_name,
+    reviewer_email, response, helpfulness)
+    VALUES
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    `,
 
   getNewest: (productId, count) => {
     return (
@@ -58,5 +58,16 @@ module.exports = {
       WHERE review_id = ${reviewId}`
     )
   },
+
+  insertText: () => {
+    return (
+      `INSERT INTO reviews
+      (product_id, rating, date, summary,
+      body, recommend, reviewer_name,
+      reviewer_email, response, helpfulness)
+      VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
+    )
+  }
 }
 

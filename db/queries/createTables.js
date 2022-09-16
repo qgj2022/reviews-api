@@ -10,7 +10,7 @@ module.exports = {
     summary TEXT NOT NULL,
     body TEXT NOT NULL,
     recommend BOOLEAN NOT NULL,
-    reported BOOLEAN NOT NULL,
+    reported BOOLEAN DEFAULT FALSE,
     reviewer_name VARCHAR(255) NOT NULL,
     reviewer_email VARCHAR(255) NOT NULL,
     response TEXT,

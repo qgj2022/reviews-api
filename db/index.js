@@ -42,4 +42,5 @@ const pool = new Pool(credentials);
 
 module.exports = {
   query: (text, params) => pool.query(text, params),
+  connect: (callback) => pool.connect(callback),
 }

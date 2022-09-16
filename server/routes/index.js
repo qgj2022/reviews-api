@@ -7,7 +7,7 @@ router.get('/reviews', controller.getReviews);
 
 router.get('/reviews/meta', controller.getMeta);
 
-router.post('/reviews', );
+router.post('/reviews', controller.postReview);
 
 router.put('/reviews/helpful', controller.putReviews.isHelpful);
 
