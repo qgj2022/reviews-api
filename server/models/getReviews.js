@@ -1,21 +1,24 @@
 const db = require('../../db');
 const { queryReviews } = require('../../db/queries');
 
-const getReviews = async (productId, sort) => {
-  if (sort === 'newest') {
-    const results = await db.query(queryReviews.getNewest(productId));
+const getReviews = async (productId, sortMethod) => {
+  if (sortMethod === 'newest') {
+    console.log('hello');
+    return await db.query(queryReviews.getNewest(productId));
   }
 
-  if (sort === 'helpful') {
-    const results = await db.query(queryReviews.getHelpful(productId));
-    console.log('results', results.rows);
+  if (sortMethod === 'helpful') {
+    return await db.query(queryReviews.getHelpful(productId));
+    // console.log('results', results.rows);
   }
 
-  if (sort === 'relevant') {
-    const results = await db.query(queryReviews.getRelevant(productId));
+  if (sortMethod === 'relevant') {
+    return await db.query(queryReviews.getRelevant(productId));
+    // console.log('results', results.rows);
   }
 }
 
-getReviews(50124, 'helpful');
+// Test case
+// getReviews(50124, 'relevant');
 
 module.exports = getReviews;

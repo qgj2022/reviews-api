@@ -61,6 +61,7 @@ const getReviewsMeta = async (productId) => {
   // console.log('chars meta', charValues);
 }
 
-getReviewsMeta(1002);
+// Test case
+// getReviewsMeta(1002);
 
 module.exports = getReviewsMeta;
