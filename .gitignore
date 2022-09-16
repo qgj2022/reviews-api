@@ -5,6 +5,7 @@ node_modules/
 data/reviews.csv
 data/reviews_photos.csv
 data/characteristic_reviews.csv
+data/characteristics.csv
 
 
 # env files
