@@ -1,20 +1,18 @@
 const db = require('../../db');
 const { queryReviews } = require('../../db/queries');
 
-const getReviews = async (productId, sortMethod) => {
+const getReviews = async (productId, sortMethod, count) => {
   if (sortMethod === 'newest') {
     console.log('hello');
-    return await db.query(queryReviews.getNewest(productId));
+    return await db.query(queryReviews.getNewest(productId, count));
   }
 
   if (sortMethod === 'helpful') {
-    return await db.query(queryReviews.getHelpful(productId));
-    // console.log('results', results.rows);
+    return await db.query(queryReviews.getHelpful(productId, count));
   }
 
   if (sortMethod === 'relevant') {
-    return await db.query(queryReviews.getRelevant(productId));
-    // console.log('results', results.rows);
+    return await db.query(queryReviews.getRelevant(productId, count));
   }
 }
 

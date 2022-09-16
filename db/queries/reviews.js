@@ -10,36 +10,36 @@ queryReviews.insert = `
   ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
   `;
 
-queryReviews.getNewest = (productId) => {
+queryReviews.getNewest = (productId, count) => {
   return (
   `SELECT review_id, rating, date, summary, recommend,
   reported, reviewer_name, response, helpfulness
   FROM reviews
   WHERE product_id = ${productId}
-  ORDER BY date DESC`
+  ORDER BY date DESC LIMIT ${count}`
   )
 }
 
-queryReviews.getHelpful = (productId) => {
+queryReviews.getHelpful = (productId, count) => {
   return (
     `SELECT review_id, rating, date, summary, recommend,
     reported, reviewer_name, response, helpfulness
     FROM reviews
     WHERE product_id = ${productId}
-    ORDER BY helpfulness DESC`
+    ORDER BY helpfulness DESC LIMIT ${count}`
   )
 }
 
 // Relevance determined by helpfulness value
 // multiplied by 7 days in epoch time
 // and subtracted from overall epoch time
-queryReviews.getRelevant = (productId) => {
+queryReviews.getRelevant = (productId, count) => {
   return (
     `SELECT review_id, rating, date, summary, recommend,
     reported, reviewer_name, response, helpfulness
     FROM reviews
     WHERE product_id = ${productId}
-    ORDER BY date - helpfulness * 604800 DESC`
+    ORDER BY date - helpfulness * 604800 DESC LIMIT ${count}`
   )
 }
 

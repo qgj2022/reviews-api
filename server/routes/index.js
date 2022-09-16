@@ -8,18 +8,16 @@ router.get('/reviews', async (req, res) => {
     res.sendStatus(404);
     return;
   }
-  // const productId  = req.query.product_id;
-  // Test
-  const { product_id, sort } = req.query;
 
+  const { product_id, sort, count } = req.query;
   try {
-    const values = await models.getReviews(product_id, sort);
+    const values = await models.getReviews(product_id, sort, count);
     // Convert epoch time to ISO 8601 format
     values.rows.forEach((row) => {
       row.date = new Date(parseInt(row.date)).toISOString();
     });
     res.status(200);
-    res.send(values);
+    res.send(values.rows);
   }
   catch(err) {
     res.status(400);
