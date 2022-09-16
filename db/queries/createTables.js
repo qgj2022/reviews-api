@@ -51,4 +51,12 @@ tables.charMeta =
     PRIMARY KEY(char_id)
     );`
 
+tables.charName =
+  `CREATE TABLE IF NOT EXISTS charname (
+    id SERIAL NOT NULL,
+    product_id INT NOT NULL,
+    name VARCHAR(10) NOT NULL,
+    PRIMARY KEY(id)
+    );`
+
 module.exports = tables;

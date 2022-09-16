@@ -5,7 +5,7 @@ const db = require('../db');
 
 const app = express();
 
-// define routes here
-
+app.use(express.json());
+app.use(router);
 
 module.exports = app;

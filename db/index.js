@@ -21,11 +21,12 @@ async function connectClient() {
     const photosTable = await client.query(tables.photos);
     const ratingsTable = await client.query(tables.ratingsMeta);
     const charTable = await client.query(tables.charMeta);
+    const charName = await client.query(tables.charName);
     console.log('The time is ' + now.rows[0].now);
-    console.log('reviews table', reviewsTable);
-    console.log('photos table', photosTable);
-    console.log('ratings table', ratingsTable);
-    console.log('characteristics table', charTable);
+    // console.log('reviews table', reviewsTable);
+    // console.log('photos table', photosTable);
+    // console.log('ratings table', ratingsTable);
+    // console.log('characteristics table', charTable);
   }
   catch (err) {
     console.log(`Something wrong happened: ${err}`);

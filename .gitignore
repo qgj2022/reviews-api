@@ -2,7 +2,9 @@
 node_modules/
 
 # Data files
-data/
+data/reviews.csv
+data/reviews_photos.csv
+data/characteristic_reviews.csv
 
 
 # env files
