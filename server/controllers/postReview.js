@@ -1,4 +1,5 @@
 const { postReview } = require('../models');
+const db = require('../../db');
 
 module.exports = async (req, res) => {
   // Parameters for body of review submission
@@ -13,39 +14,49 @@ module.exports = async (req, res) => {
     req.body.email,
   ];
 
-  console.log(req.body.photos);
   // Photos should already be in array structure
   const photoParam = req.body.photos;
 
   // Characteristics object should have string id and num value properties
   const charParam = req.body.characteristics;
 
-  try {
-    const postedText = await postReview.text(textParam);
-    const newReviewId = postedText.rows[0].review_id;
-    console.log('hellooooo');
-    const postedPhotos = await postReview.photos(photoParam, newReviewId);
-    // const postedChars = await postReview.char(charParam);
-    res.status(200);
-    // res.send(postedText.rows);
-    res.send(postedPhotos);
-  }
-  catch(err) {
-    res.status(400);
-    res.send(err);
-  }
+  // Map characteristics values to column names
+  const valToCol = {
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+  };
+
+  (async () => {
+    // Open single connection for transaction
+    const client = await db.connect();
+    try {
+      await client.query('BEGIN');
+
+      // Begin insert of each review section into respective tables
+      const postedText = await postReview.text(textParam);
+      const newReviewId = postedText.rows[0].review_id;
+      const postedPhotos = await postReview.photos(photoParam, newReviewId);
+
+      // Iteratively update each characteristics entry
+      for (let key in charParam) {
+        await postReview.char(parseInt(key), valToCol[charParam[key]]);
+      }
+
+      res.status(200);
+      res.send('Successfully posted review!');
+      await client.query('COMMIT');
+    }
+    catch (err) {
+      await client.query('ROLLBACK');
+      res.status(400);
+      res.send(err);
+    }
+    finally {
+      client.release()
+    }
+  })()
+  .catch((err) => console.error(err.stack))
 }
-
-
-// app.post('/review/post', (req, res) => {
-//   axios.post(`${process.env.API}/reviews`, {
-//     product_id: req.body.product_id,
-//     rating: req.body.rating,
-//     summary: req.body.summary,
-//     body: req.body.body,
-//     recommend: req.body.recommend,
-//     name: req.body.name,
-//     email: req.body.email,
-//     photos: req.body.photos,
-//     characteristics: req.body.characteristics
-//   }, {

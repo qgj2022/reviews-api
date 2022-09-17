@@ -10,7 +10,7 @@ module.exports = {
     return await db.query(queryPhotos.insert(reviewPhotos, reviewId));
   },
 
-  char: async (reviewChar) => {
-    return await db.query(queryChar.insert(reviewChar));
+  char: async (charId, charColumn) => {
+    return await db.query(queryChar.insert(charId, charColumn));
   },
 }
