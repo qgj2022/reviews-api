@@ -3,7 +3,6 @@ const { queryReviews } = require('../../db/queries');
 
 module.exports = async (productId, sortMethod, count) => {
   if (sortMethod === 'newest') {
-    console.log('hello');
     return await db.query(queryReviews.getNewest(productId, count));
   }
 

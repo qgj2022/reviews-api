@@ -6,7 +6,16 @@ data/reviews.csv
 data/reviews_photos.csv
 data/characteristic_reviews.csv
 data/characteristics.csv
+testing/
 
+# Testing
+artillery*
+Dockerfile
+test*
+
+# Keys
+sdcyota88.pem
+yota88sdc.pem
 
 # env files
 .env
