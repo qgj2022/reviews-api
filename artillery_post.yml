@@ -1,0 +1,29 @@
+config:
+  # target: "http://54.175.93.124:3000"
+  target: "http://localhost:3000"
+  phases:
+    - duration: 180
+      arrivalRate: 10
+      name: Regular load
+    # - duration: 180
+    #   arrivalRate: 100
+    #   rampTo: 500
+    #   name: Ramp high load
+
+
+scenarios:
+  - name: "Post product review"
+    flow:
+      - post:
+          url: '/reviews/post'
+          json:
+            product_id: 1
+            rating: 1
+            date: "2020-07-30T03:41:21.467Z"
+            summary: "another test summary"
+            body: "another test body"
+            recommend: false
+            name: "yota88"
+            email: "yota88@testreallytestingnow"
+            photos: ["http://test.com", "http://test2.com"]
+            characteristics: { "1": 4, "2": 4, "3": 4, "4": 4}

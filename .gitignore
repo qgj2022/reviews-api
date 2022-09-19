@@ -8,10 +8,14 @@ data/characteristic_reviews.csv
 data/characteristics.csv
 testing/
 
+# db backup
+*.sql
+
 # Testing
-artillery*
 Dockerfile
 test*
+.clinic/
+.dockerignore
 
 # Keys
 sdcyota88.pem

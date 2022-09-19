@@ -1,0 +1,24 @@
+config:
+  # target: "http://54.175.93.124:3000"
+  target: "http://localhost:3000"
+  phases:
+    - duration: 180
+      arrivalRate: 10
+      name: Regular load
+    # - duration: 180
+    #   arrivalRate: 100
+    #   rampTo: 500
+    #   name: Ramp high load
+
+
+scenarios:
+  - name: "Post product review"
+    flow:
+      - put:
+          url: '/reviews/helpful'
+          qs:
+            review_id: 1
+      - put:
+          url: '/reviews/helpful'
+          qs:
+            review_id: 1
