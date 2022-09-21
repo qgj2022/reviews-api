@@ -1,4 +1,4 @@
-const { getReviews } = require('../models');
+const { getReviews, getPhotos } = require('../models');
 
 module.exports = async (req, res) => {
   if (!req.query.sort || !req.query.product_id) {
@@ -9,10 +9,13 @@ module.exports = async (req, res) => {
   const { product_id, sort, count } = req.query;
   try {
     const values = await getReviews(product_id, sort, count);
-    // Convert epoch time to ISO 8601 format
-    values.rows.forEach((row) => {
-      row.date = new Date(parseInt(row.date)).toISOString();
-    });
+
+    for (let i = 0; i < values.rows.length; i++) {
+      const photos = await getPhotos(values.rows[i].review_id);
+      // Convert epoch time to ISO 8601 format
+      values.rows[i].date = new Date(parseInt(values.rows[i].date)).toISOString();
+      values.rows[i].photos = photos.rows;
+    }
     res.status(200);
     res.send(values.rows);
   }

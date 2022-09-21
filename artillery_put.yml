@@ -19,6 +19,6 @@ scenarios:
           qs:
             review_id: 1
       - put:
-          url: '/reviews/helpful'
+          url: '/reviews/report'
           qs:
             review_id: 1

@@ -12,10 +12,8 @@ testing/
 *.sql
 
 # Testing
-Dockerfile
 test*
 .clinic/
-.dockerignore
 
 # Keys
 sdcyota88.pem
@@ -25,7 +23,7 @@ yota88sdc.pem
 .env
 
 # Else
-package-lock.json
+# package-lock.json
 
 # OS level
 .DS_Store

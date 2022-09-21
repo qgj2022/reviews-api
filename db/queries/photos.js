@@ -16,5 +16,13 @@ module.exports = {
       (review_id, url)
       VALUES ` + photosQuery
     )
+  },
+
+  get: (reviewId) => {
+    return (
+      `SELECT id, url
+      FROM photos
+      WHERE review_id = ${reviewId}`
+    )
   }
 }
